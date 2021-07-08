@@ -1,10 +1,12 @@
-resource "digitalocean_kubernetes_cluster" "milo"{
+resource "digitalocean_kubernetes_cluster" "milo" {
     name = "milo"
-    region = "ncy1"
-    version = "1.13.4-do.0"
+    region = "nyc1"
+    # Validar que versión de kubernetes están disponibles
+    version = "1.21.2-do.2"
 
     node_pool{
-        name = "milo_nodes"
+        # El nombre del pool no admite ciertos caracteres ej: "_"
+        name = "milo-nodes-pool"
         size = "s-1vcpu-2gb"
         node_count = "1"
     }
